@@ -1,6 +1,7 @@
 package in.codelog.foodbox.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +25,11 @@ public class ProductController {
 	@GetMapping("/product")
 	public List<Product> getAllProduct() {
 		return productRepository.findAll();
+	}
+
+	@GetMapping("/product/{id}")
+	public Optional<Product> getProduct(@PathVariable(value = "id") int id) {
+		return productRepository.findById(id);
 	}
 
 	@PostMapping("/product")
