@@ -1,5 +1,7 @@
 package in.codelog.foodbox.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +17,19 @@ public class Product {
 	private String p_description;
 	private String p_image;
 	private Boolean p_instock;
+
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Product(String p_name, String p_description, String p_image, Boolean p_instock) {
+		super();
+		this.p_name = p_name;
+		this.p_description = p_description;
+		this.p_image = p_image;
+		this.p_instock = p_instock;
+	}
 
 	public Product(Integer p_id, String p_name, String p_description, String p_image, Boolean p_instock) {
 		super();
@@ -63,6 +78,25 @@ public class Product {
 
 	public void setP_instock(Boolean p_instock) {
 		this.p_instock = p_instock;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(p_description, p_id, p_image, p_instock, p_name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(p_description, other.p_description) && Objects.equals(p_id, other.p_id)
+				&& Objects.equals(p_image, other.p_image) && Objects.equals(p_instock, other.p_instock)
+				&& Objects.equals(p_name, other.p_name);
 	}
 
 }
