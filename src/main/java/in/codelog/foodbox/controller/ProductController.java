@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.codelog.foodbox.model.Product;
-import in.codelog.foodbox.model.User;
 import in.codelog.foodbox.repository.ProductRepository;
 
 @RestController

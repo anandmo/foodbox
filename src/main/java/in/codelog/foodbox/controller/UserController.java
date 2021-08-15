@@ -3,11 +3,13 @@ package in.codelog.foodbox.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +36,20 @@ public class UserController {
 	@DeleteMapping("/user/{id}")
 	public void deleteUser(@PathVariable(value = "id") int id) {
 		userRepository.deleteById(id);
+	}
+
+	@PutMapping("/user/{id}")
+	public ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable(value = "id") int id) {
+
+		User tempUser = userRepository.getById(id);
+
+		if (tempUser == null)
+			return ResponseEntity.notFound().build();
+
+		user.setU_id(id);
+		userRepository.save(user);
+
+		return ResponseEntity.noContent().build();
 	}
 
 }
