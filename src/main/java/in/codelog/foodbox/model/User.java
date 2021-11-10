@@ -2,6 +2,7 @@ package in.codelog.foodbox.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +15,10 @@ public class User {
 	private Integer u_id;
 
 	private String u_name;
-	private String u_email;
+	
+	@Column(name = "u_email", nullable = false)
+	private String email;
+	
 	private String u_address;
 	private String u_password;
 
@@ -23,19 +27,19 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String u_name, String u_email, String u_address, String u_password) {
+	public User(String u_name, String email, String u_address, String u_password) {
 		super();
 		this.u_name = u_name;
-		this.u_email = u_email;
+		this.email = email;
 		this.u_address = u_address;
 		this.u_password = u_password;
 	}
 
-	public User(Integer u_id, String u_name, String u_email, String u_address, String u_password) {
+	public User(Integer u_id, String u_name, String email, String u_address, String u_password) {
 		super();
 		this.u_id = u_id;
 		this.u_name = u_name;
-		this.u_email = u_email;
+		this.email = email;
 		this.u_address = u_address;
 		this.u_password = u_password;
 	}
@@ -57,11 +61,11 @@ public class User {
 	}
 
 	public String getU_email() {
-		return u_email;
+		return email;
 	}
 
 	public void setU_email(String u_email) {
-		this.u_email = u_email;
+		this.email = u_email;
 	}
 
 	public String getU_address() {
@@ -82,7 +86,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(u_address, u_email, u_id, u_name, u_password);
+		return Objects.hash(u_address, email, u_id, u_name, u_password);
 	}
 
 	@Override
@@ -94,7 +98,7 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(u_address, other.u_address) && Objects.equals(u_email, other.u_email)
+		return Objects.equals(u_address, other.u_address) && Objects.equals(email, other.email)
 				&& Objects.equals(u_id, other.u_id) && Objects.equals(u_name, other.u_name)
 				&& Objects.equals(u_password, other.u_password);
 	}

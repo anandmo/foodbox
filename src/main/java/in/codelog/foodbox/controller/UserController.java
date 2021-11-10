@@ -52,4 +52,24 @@ public class UserController {
 		return ResponseEntity.noContent().build();
 	}
 
+	@PostMapping("/verifylogin")
+	public User verifyLogin(@RequestBody User user) {
+		
+		User dummyUser = new User(0,"NOT_VALID","NOT_VALID","NOT_VALID","NOT_VALID");
+		
+		List<User> listedUser = userRepository.findByEmail(user.getU_email());
+		//System.out.println("LOG DETECT "+user.getU_email());
+		//System.out.println("LOG DETECT "+listedUser);
+		
+		if (listedUser.isEmpty())
+			return dummyUser;
+		
+		if (listedUser.get(0).getU_password().equals(user.getU_password())) {
+			return user;
+		} else {
+			return dummyUser;
+		}
+		
+	}
+
 }
