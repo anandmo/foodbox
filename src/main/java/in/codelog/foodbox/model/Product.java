@@ -17,27 +17,32 @@ public class Product {
 	private String p_description;
 	private String p_image;
 	private Boolean p_instock;
+	private Double p_cost;
 
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Product(String p_name, String p_description, String p_image, Boolean p_instock) {
-		super();
-		this.p_name = p_name;
-		this.p_description = p_description;
-		this.p_image = p_image;
-		this.p_instock = p_instock;
-	}
+	/*
+	 * public Product(String p_name, String p_description, String p_image, Boolean
+	 * p_instock) { super(); this.p_name = p_name; this.p_description =
+	 * p_description; this.p_image = p_image; this.p_instock = p_instock; }
+	 * 
+	 * public Product(Integer p_id, String p_name, String p_description, String
+	 * p_image, Boolean p_instock) { super(); this.p_id = p_id; this.p_name =
+	 * p_name; this.p_description = p_description; this.p_image = p_image;
+	 * this.p_instock = p_instock; }
+	 */
 
-	public Product(Integer p_id, String p_name, String p_description, String p_image, Boolean p_instock) {
+	public Product(Integer p_id, String p_name, String p_description, String p_image, Boolean p_instock,
+			Double p_cost) {
 		super();
 		this.p_id = p_id;
 		this.p_name = p_name;
 		this.p_description = p_description;
 		this.p_image = p_image;
 		this.p_instock = p_instock;
+		this.p_cost = p_cost;
 	}
 
 	public Integer getP_id() {
@@ -80,9 +85,29 @@ public class Product {
 		this.p_instock = p_instock;
 	}
 
+	/*
+	 * @Override public int hashCode() { return Objects.hash(p_description, p_id,
+	 * p_image, p_instock, p_name); }
+	 * 
+	 * @Override public boolean equals(Object obj) { if (this == obj) return true;
+	 * if (obj == null) return false; if (getClass() != obj.getClass()) return
+	 * false; Product other = (Product) obj; return Objects.equals(p_description,
+	 * other.p_description) && Objects.equals(p_id, other.p_id) &&
+	 * Objects.equals(p_image, other.p_image) && Objects.equals(p_instock,
+	 * other.p_instock) && Objects.equals(p_name, other.p_name); }
+	 */
+
+	public Double getP_cost() {
+		return p_cost;
+	}
+
+	public void setP_cost(Double p_cost) {
+		this.p_cost = p_cost;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(p_description, p_id, p_image, p_instock, p_name);
+		return Objects.hash(p_cost, p_description, p_id, p_image, p_instock, p_name);
 	}
 
 	@Override
@@ -94,9 +119,9 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return Objects.equals(p_description, other.p_description) && Objects.equals(p_id, other.p_id)
-				&& Objects.equals(p_image, other.p_image) && Objects.equals(p_instock, other.p_instock)
-				&& Objects.equals(p_name, other.p_name);
+		return Objects.equals(p_cost, other.p_cost) && Objects.equals(p_description, other.p_description)
+				&& Objects.equals(p_id, other.p_id) && Objects.equals(p_image, other.p_image)
+				&& Objects.equals(p_instock, other.p_instock) && Objects.equals(p_name, other.p_name);
 	}
 
 }
